@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="#" class="navbar-brand">
+            <img src="/asset/logo arkademy.png" height="60" alt="CoolBrand">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="header-text">
+               <h4 id="header-text1">Aplikasi</h4>
+            </div>
+            <div class="header-text">
+               <h4 id="header-text2">ToDoList</h4>
+            </div>
+           <a href="/add" class="btn btn-success ml-auto btn-tambah"> Tambah</a>
+        </div>
+    </nav>
+    <div class="container" id="container-form">
+        <h2 class="text-center">DAFTAR TUGAS</h2>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">id_task</th>
+                <th scope="col">Tanggal</th>
+                <th scope="col">Nama tugas</th>
+                <th scope="col">Urgensi</th>
+                <th scope="col">Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% data_task.forEach((v)=> { %> 
+            <tr>
+                <th scope="row"><%= v.id_task %></th>
+                <td><%= moment(v.tanggal).format('DD-MM-YYYY'); %></td>
+                <td><%= v.namaTugas %></td>
+                <td><%= v.urgensi %></td>
+                <td>
+                    <a class="btn btn-primary" href="/update/<%= v.id_task %>">Update</a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal<%= v.id_task%>">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+      
+            <div class="modal fade" id="exampleModal<%= v.id_task %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi hapus tugas </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah anda yakin menghapus tugas <%= v.namaTugas %>  ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a  class="btn btn-danger" href="/delete/<%= v.id_task %>">Delete</a>
+                </div>
+                </div>
+            </div>
+            </div>
+            <% }) %>
+            </tbody>
+        </table>
+     </div>
+</body>
+</html>

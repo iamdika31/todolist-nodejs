@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="#" class="navbar-brand">
+            <img src="/asset/logo arkademy.png" height="60" alt="CoolBrand">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="header-text">
+               <h4 id="header-text1">Aplikasi</h4>
+            </div>
+            <div class="header-text">
+               <h4 id="header-text2">ToDoList</h4>
+            </div>
+            <a href="/" class="btn btn-secondary ml-auto btn-tambah"> Kembali</a>
+        </div>
+    </nav>
+    <div class="add-form">
+        <form  action='/create' method='post' enctype="application/x-www-form-urlencoded">
+            <h2 class="text-center">Tambah tugas</h2>
+            <div class="form-group">
+              <label for="tanggal">Tanggal</label>
+              <input name="tanggal" type="date" class="form-control" id="tanggal">
+            </div>
+            <div class="form-group">
+              <label for="task">Nama Tugas</label>
+              <input name='namaTugas' type="text" class="form-control" id="task">
+            </div>
+            <div class="form-group">
+                <label for="urgensi">urgensi</label>
+                <select class="form-control"name="urgensi">
+                    <% urgensi.forEach((v) => { %>
+                        <option value="<%= v.id_urgensi %>"><%= v.urgensi%> </option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="d-block mx-auto text-center">
+                <button type="submit" id='btn-add' class="btn btn-primary">Submit</button>
+            </div>    
+        </form>
+    </div>
+</body>
+</html>
